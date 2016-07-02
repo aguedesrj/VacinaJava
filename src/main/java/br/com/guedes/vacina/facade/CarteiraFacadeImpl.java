@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.guedes.vacina.model.Carteira;
 import br.com.guedes.vacina.model.Usuario;
-import br.com.guedes.vacina.util.IntegrationException;
 import br.com.guedes.vacina.vo.CarteiraVO;
 
 @Service
@@ -28,26 +27,23 @@ public class CarteiraFacadeImpl implements CarteiraFacade {
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void salvar(CarteiraVO carteiraVO) 
-			throws IntegrationException {
-		try {
-			Carteira carteira = new Carteira();
-			Usuario usuario = new Usuario();
-			
-			carteira.setCarCodigo(carteiraVO.getCarCodigo());
-			carteira.setCarDataNascimento(carteiraVO.getCarDataNascimento());
-			carteira.setCarFoto(carteiraVO.getCarFoto());
-			carteira.setCarNome(carteiraVO.getCarNome());
-			carteira.setCarNotificacao(carteiraVO.getCarNotificacao());
-			carteira.setCarSexo(carteiraVO.getCarSexo());
-			usuario.setUsuCodigo(carteiraVO.getUsuCodigo());
-			carteira.setUsuario(usuario);
-			
-			// salvar...
-			sessionFactory.getCurrentSession().saveOrUpdate(carteira);
-			sessionFactory.getCurrentSession().flush();
-		} catch (Exception e) {
-			throw new IntegrationException("Erro ao salvar a carteira.");
-		}
+			throws Exception {
+
+		Carteira carteira = new Carteira();
+		Usuario usuario = new Usuario();
+		
+		carteira.setCarCodigo(carteiraVO.getCarCodigo());
+		carteira.setCarDataNascimento(carteiraVO.getCarDataNascimento());
+		carteira.setCarFoto(carteiraVO.getCarFoto());
+		carteira.setCarNome(carteiraVO.getCarNome());
+		carteira.setCarNotificacao(carteiraVO.getCarNotificacao());
+		carteira.setCarSexo(carteiraVO.getCarSexo());
+		usuario.setUsuCodigo(carteiraVO.getUsuCodigo());
+		carteira.setUsuario(usuario);
+		
+		// salvar...
+		sessionFactory.getCurrentSession().saveOrUpdate(carteira);
+		sessionFactory.getCurrentSession().flush();
 	}
 	
 	/*
@@ -56,12 +52,12 @@ public class CarteiraFacadeImpl implements CarteiraFacade {
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void excluir(CarteiraVO carteiraVO) 
-			throws IntegrationException {
-		try {
-			
-		} catch (Exception e) {
-			throw new IntegrationException("Erro ao excluir a carteira.");
-		}
+			throws Exception {
+//		try {
+//			
+//		} catch (Exception e) {
+//			throw new IntegrationException("Erro ao excluir a carteira.");
+//		}
 	}
 
 	public SessionFactory getSessionFactory() {

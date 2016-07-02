@@ -1,6 +1,5 @@
 package br.com.guedes.vacina.facade;
 
-import br.com.guedes.vacina.util.IntegrationException;
 import br.com.guedes.vacina.vo.CarteiraVO;
 
 public interface CarteiraFacade {
@@ -8,16 +7,16 @@ public interface CarteiraFacade {
 	/**
 	 * 
 	 * @param carteiraVO CarteiraVO
-	 * @throws IntegrationException
+	 * @throws Exception
 	 */
 	public void salvar(CarteiraVO carteiraVO) 
-			throws IntegrationException;
+			throws Exception;
 	
 	/**
 	 * 
 	 * @param carteiraVO CarteiraVO
-	 * @throws IntegrationException
+	 * @throws Exception
 	 */
 	public void excluir(CarteiraVO carteiraVO) 
-			throws IntegrationException;
+			throws Exception;
 }

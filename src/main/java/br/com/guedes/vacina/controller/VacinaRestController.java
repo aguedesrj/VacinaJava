@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.guedes.vacina.facade.UsuarioFacade;
 import br.com.guedes.vacina.facade.VacinaFacade;
-import br.com.guedes.vacina.util.IntegrationException;
-import br.com.guedes.vacina.vo.CarteiraVO;
 import br.com.guedes.vacina.vo.RetornoJsonVO;
-import br.com.guedes.vacina.vo.UsuarioVO;
 import br.com.guedes.vacina.vo.VacinaTomadaVO;
 
 @RestController
@@ -34,7 +30,7 @@ public class VacinaRestController {
 			vacinaTomadaVO.setVarCodigo(varCodigo);
 			
 			vacinaFacade.salvarVacinaTomada(vacinaTomadaVO);
-		} catch (IntegrationException integrationException) {
+		} catch (Exception exception) {
 			retornoUsuarioVO.setCodigo(999);
 			retornoUsuarioVO.setMensagem("Não foi possível excluir a carteira.");
 		}
@@ -53,7 +49,7 @@ public class VacinaRestController {
 			vacinaTomadaVO.setVarCodigo(varCodigo);
 			
 			vacinaFacade.excluirVacinaTomada(vacinaTomadaVO);
-		} catch (IntegrationException integrationException) {
+		} catch (Exception exception) {
 			retornoUsuarioVO.setCodigo(999);
 			retornoUsuarioVO.setMensagem("Não foi possível excluir a carteira.");
 		}

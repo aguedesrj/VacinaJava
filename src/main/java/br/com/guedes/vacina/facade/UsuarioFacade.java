@@ -1,7 +1,6 @@
 package br.com.guedes.vacina.facade;
 
 import br.com.guedes.vacina.util.BusinessException;
-import br.com.guedes.vacina.util.IntegrationException;
 import br.com.guedes.vacina.vo.UsuarioVO;
 
 public interface UsuarioFacade {
@@ -11,34 +10,32 @@ public interface UsuarioFacade {
 	 * @param usuarioVO
 	 * @return
 	 * @throws BusinessException
-	 * @throws IntegrationException
 	 */
 	public UsuarioVO efetuarLogin(UsuarioVO usuarioVO) 
-			throws BusinessException, IntegrationException;
+			throws BusinessException, Exception;
 	
 	/**
 	 * 
 	 * @param email
 	 * @return
 	 * @throws BusinessException
-	 * @throws IntegrationException
 	 */
 	public UsuarioVO obterUsuarioPorEmail(final String email) 
-			throws BusinessException, IntegrationException;
+			throws BusinessException;
 	
 	/**
 	 * 
 	 * @param usuarioVO
-	 * @throws IntegrationException
+	 * @throws Exception
 	 */
 	public void salvar(UsuarioVO usuarioVO) 
-			throws IntegrationException;
+			throws Exception;
 	
 	/**
 	 * 
 	 * @param email
-	 * @throws IntegrationException
+	 * @throws Exception
 	 */
 	public void enviarEmail(final String email) 
-			throws IntegrationException;
+			throws Exception;
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.guedes.vacina.facade.CarteiraFacade;
-import br.com.guedes.vacina.util.IntegrationException;
 import br.com.guedes.vacina.vo.CarteiraVO;
 import br.com.guedes.vacina.vo.RetornoJsonVO;
 
@@ -41,7 +40,7 @@ public class CarteiraRestController {
 			carteiraVO.setUsuCodigo(usuCodigo);
 			
 			carteiraFacade.salvar(carteiraVO);
-		} catch (IntegrationException integrationException) {
+		} catch (Exception exception) {
 			retornoUsuarioVO.setCodigo(999);
 			retornoUsuarioVO.setMensagem("Não foi possível salvar a carteira.");
 		}
@@ -60,7 +59,7 @@ public class CarteiraRestController {
 			carteiraVO.setUsuCodigo(usuCodigo);
 			
 			carteiraFacade.excluir(carteiraVO);
-		} catch (IntegrationException integrationException) {
+		} catch (Exception exception) {
 			retornoUsuarioVO.setCodigo(999);
 			retornoUsuarioVO.setMensagem("Não foi possível excluir a carteira.");
 		}

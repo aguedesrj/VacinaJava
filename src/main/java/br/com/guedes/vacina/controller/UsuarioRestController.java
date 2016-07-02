@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.guedes.vacina.facade.UsuarioFacade;
 import br.com.guedes.vacina.util.BusinessException;
-import br.com.guedes.vacina.util.IntegrationException;
 import br.com.guedes.vacina.vo.RetornoJsonVO;
 import br.com.guedes.vacina.vo.UsuarioVO;
 
@@ -41,9 +40,9 @@ public class UsuarioRestController {
 		} catch (BusinessException businessException) {
 			retornoUsuarioVO.setCodigo(998);
 			retornoUsuarioVO.setMensagem(businessException.getMessage());
-		} catch (IntegrationException integrationException) {
+		} catch (Exception e) {
 			retornoUsuarioVO.setCodigo(999);
-			retornoUsuarioVO.setMensagem("Não foi possível salvar o usuário.");
+			retornoUsuarioVO.setMensagem("teste");
 		}
 		return retornoUsuarioVO;
 	}
@@ -68,9 +67,12 @@ public class UsuarioRestController {
 			usuarioVO.setUsuSenha(usuSenha);
 			
 			usuarioFacade.salvar(usuarioVO);
-		} catch (IntegrationException integrationException) {
+		} catch (BusinessException businessException) {
+			retornoUsuarioVO.setCodigo(998);
+			retornoUsuarioVO.setMensagem(businessException.getMessage());
+		} catch (Exception e) {
 			retornoUsuarioVO.setCodigo(999);
-			retornoUsuarioVO.setMensagem("Não foi possível salvar o usuário.");
+			retornoUsuarioVO.setMensagem("teste");
 		}
 		return retornoUsuarioVO;
 	}
@@ -90,7 +92,7 @@ public class UsuarioRestController {
 		} catch (BusinessException businessException) {
 			retornoUsuarioVO.setCodigo(998);
 			retornoUsuarioVO.setMensagem("Email informado não existe.");
-		} catch (IntegrationException integrationException) {
+		} catch (Exception integrationException) {
 			retornoUsuarioVO.setCodigo(999);
 			retornoUsuarioVO.setMensagem("Não foi possível enviar a senha para o email informado.");
 		}

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.guedes.vacina.dao.UsuarioDao;
 import br.com.guedes.vacina.model.Usuario;
 import br.com.guedes.vacina.util.BusinessException;
-import br.com.guedes.vacina.util.IntegrationException;
 import br.com.guedes.vacina.vo.UsuarioVO;
 
 @Service
@@ -31,7 +30,7 @@ public class UsuarioFacadeImpl implements UsuarioFacade {
 	 * @see br.com.guedes.vacina.facade.UsuarioFacade#efetuarLogin(br.com.guedes.vacina.vo.UsuarioVO)
 	 */
 	public UsuarioVO efetuarLogin(UsuarioVO usuarioVO) 
-			throws BusinessException, IntegrationException {
+			throws BusinessException {
 		Usuario usuario = usuarioDao.efetuarLogin(usuarioVO.getUsuEmail(), usuarioVO.getUsuSenha());
 		
 		usuarioVO.setUsuCodigo(usuario.getUsuCodigo());
@@ -45,7 +44,7 @@ public class UsuarioFacadeImpl implements UsuarioFacade {
 	 * @see br.com.guedes.vacina.facade.UsuarioFacade#obterUsuarioPorEmail(java.lang.String)
 	 */
 	public UsuarioVO obterUsuarioPorEmail(final String email) 
-			throws BusinessException, IntegrationException {
+			throws BusinessException {
 		LOGGER.info("Obter email de: {}", email);
 		Usuario usuario = usuarioDao.obterUsuarioPorEmail(email);
 		
@@ -62,32 +61,26 @@ public class UsuarioFacadeImpl implements UsuarioFacade {
 	 * @see br.com.guedes.vacina.facade.UsuarioFacade#salvar(br.com.guedes.vacina.model.Usuario)
 	 */
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void salvar(UsuarioVO usuarioVO) 
-			throws IntegrationException {
-		try {
-			Usuario usuario = new Usuario();
-			usuario.setUsuNome(usuarioVO.getUsuNome());
-			usuario.setUsuEmail(usuarioVO.getUsuEmail());
-			usuario.setUsuSenha(usuarioVO.getUsuSenha());
-			
-			sessionFactory.getCurrentSession().saveOrUpdate(usuario);
-			sessionFactory.getCurrentSession().flush();
-		} catch (Exception e) {
-			throw new IntegrationException("Erro ao salvar usuário.");
-		}
+	public void salvar(UsuarioVO usuarioVO) {
+		Usuario usuario = new Usuario();
+		usuario.setUsuNome(usuarioVO.getUsuNome());
+		usuario.setUsuEmail(usuarioVO.getUsuEmail());
+		usuario.setUsuSenha(usuarioVO.getUsuSenha());
+		
+		sessionFactory.getCurrentSession().saveOrUpdate(usuario);
+		sessionFactory.getCurrentSession().flush();
 	}
 	
 	/*
 	 * (non-Javadoc)
 	 * @see br.com.guedes.vacina.facade.UsuarioFacade#enviarEmail(java.lang.String)
 	 */
-	public void enviarEmail(final String email) 
-			throws IntegrationException {
-		try {
-			
-		} catch (Exception e) {
-			throw new IntegrationException("Erro ao enviar email para o usuário.");
-		}
+	public void enviarEmail(final String email) {
+//		try {
+//			
+//		} catch (Exception e) {
+//			throw new Exception("Erro ao enviar email para o usuário.");
+//		}
 	}
 
 	public UsuarioDao getUsuarioDao() {

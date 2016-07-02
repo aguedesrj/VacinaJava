@@ -5,9 +5,9 @@
 <web-app>
   	<display-name>Sistema de Vacinas.</display-name>
   	
-  	<listener>
+<!--   	<listener>
   		<listener-class>br.com.guedes.vacina.listener.AppContextVacinaListener</listener-class>
-  	</listener>
+  	</listener> -->
   	
 	<listener>
     	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
